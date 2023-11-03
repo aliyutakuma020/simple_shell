@@ -1,0 +1,2 @@
+Simple Shell
+This is a simple Unix command-line interpreter (shell) that executes commands with basic functionality. It can handle simple commands with or without arguments, implement built-ins like "exit" and "env," and manage the PATH. The shell displays a prompt, waits for user input, and executes the specified command. Developed as a part of a project, it follows the Unix shell standards. You can compile and run it on your system.
