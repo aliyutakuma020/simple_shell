@@ -7,7 +7,8 @@
 #include <string.h>
 #include <sys/types.h>
 
-
+void prompt_ap(void);
+void print_ap(const char *info);
 
 
 
