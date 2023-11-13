@@ -86,7 +86,7 @@ CustomList_t *alias;
 char **new_environ;
 int new_environ_changed;
 int position;
-char *command_buffer; /*memory management */
+char *command_buffer; /* for memory management */
 int cmnd_b_type;
 int r_fd;
 int c_hist;
@@ -107,7 +107,7 @@ int (*builtin_function)(CustomInfo_t *);
 } CustomBuiltinTable;
 
 /* toem_shloop.c */
-int pel_custom_shell(CustomInfo_t , char *);
+int pel_custom_shell(CustomInfo_t *, char **);
 int find_pel_custom_builtin(CustomInfo_t *);
 void find_pel_custom_command(CustomInfo_t *);
 void fork_pel_custom_command(CustomInfo_t *);
@@ -178,12 +178,12 @@ int pel_custom_history(CustomInfo_t *);
 int pel_custom_alias(CustomInfo_t *);
 /* toem_getline.c */
 ssize_t pel_custom_get_input(CustomInfo_t *);
-int pel_custom_getline(CustomInfo_t , char *, size_t *);
+int pel_custom_getline(CustomInfo_t *, char **, size_t *);
 void pel_custom_sigint_handler(int);
 
 /* toem_getinfo.c */
 void pel_custom_clear_info(CustomInfo_t *);
-void pel_custom_set_info(CustomInfo_t , char *);
+void pel_custom_set_info(CustomInfo_t *, char **);
 void pel_custom_free_info(CustomInfo_t *, int);
 
 /* toem_environ.c */
@@ -206,8 +206,8 @@ int pel_custom_build_history_list(CustomInfo_t *, char *, int);
 int pel_custom_renumber_history(CustomInfo_t *);
 
 /* toem_lists.c */
-CustomList_t pel_custom_add_node(CustomList_t *, const char *, int);
-CustomList_t pel_custom_add_node_end(CustomList_t *, const char *, int);
+CustomList_t *pel_custom_add_node(CustomList_t **, const char *, int);
+CustomList_t *pel_custom_add_node_end(CustomList_t **, const char *, int);
 size_t pel_custom_print_list_str(const CustomList_t *);
 int pel_custom_delete_node_at_index(CustomList_t **, unsigned int);
 void pel_custom_free_list(CustomList_t **);

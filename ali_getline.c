@@ -35,7 +35,7 @@ ssize_t pel_custom_input_buf(CustomInfo_t *format, char **buffer, size_t *len)
             pel_custom_build_history_list(format, *buffer, format->c_hist++);
             {
                 *len = r;
-                format->command_buffer = buffer;
+                format->command_buffer = *buffer;
             }
         }
     }
