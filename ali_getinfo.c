@@ -62,8 +62,8 @@ void pel_custom_free_info(CustomInfo_t *format, int a)
             pel_custom_free_list(&(format->hist_node));
         if (format->alias)
             pel_custom_free_list(&(format->alias));
-        pel_custom_free(format->new_environ);
-        format->new_environ = NULL;
+        pel_custom_free(format->custom_environ);
+        format->custom_environ = NULL;
 	pel_custom_bfree((void **)&(format->command_buffer));
         if (format->r_fd > 2)
             close(format->r_fd);

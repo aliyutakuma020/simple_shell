@@ -83,10 +83,10 @@ char *prg_fname;
 CustomList_t *linked_environ;
 CustomList_t *hist_node;
 CustomList_t *alias;
-char **new_environ;
+char **custom_environ;
 int new_environ_changed;
 int position;
-char *command_buffer; /* for memory management */
+char **command_buffer; /* for memory management */
 int cmnd_b_type;
 int r_fd;
 int c_hist;
