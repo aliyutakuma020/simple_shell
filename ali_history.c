@@ -48,7 +48,7 @@ close(f);
 return (1);
 }
 /**
-* pel_custom read_history - reads history from file
+* pel_custom_read_history - reads history from file
 * @format: the parameter struct
 *
 * Return: histcount on success, 0 otherwise
