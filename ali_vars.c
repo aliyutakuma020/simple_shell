@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
-* pel_custom_is_command_chain - test if current char in buffer is a chain delimiter
+* pel_custom_is_command_chain - test if current char
+* in buffer is a chain delimiter
 * @format: the parameter struct
 * @buffer: the char buffer
 * @p: address of current position in buf
@@ -36,7 +37,8 @@ return (0);
 return (1);
 }
 /**
-* custom_check_cmd_chain - checks if we should continue chaining based on last status
+* custom_check_cmd_chain - checks if we should continue
+* chaining based on last status
 * @format: the parameter struct
 * @buffer: the char buffer
 * @p: address of current position in buf
@@ -45,7 +47,8 @@ return (1);
 *
 * Return: Void
 */
-void custom_check_cmd_chain(CustomInfo_t *format, char *buffer, size_t *p, size_t i, size_t l)
+void custom_check_cmd_chain(CustomInfo_t *format, char *buffer,
+		size_t *p, size_t i, size_t l)
 {
 size_t j = *p;
 
@@ -124,7 +127,8 @@ pel_custom_replace_string(&(format->argv[i]),
 pel_custom_strdup(pel_custom_convert_number(getpid(), 10, 0)));
 continue;
 }
-node = pel_custom_node_starts_with(format->linked_environ, &format->argv[i][1], '=');
+node = pel_custom_node_starts_with(format->linked_environ,
+		&format->argv[i][1], '=');
 if (node)
 {
 pel_custom_replace_string(&(format->argv[i]),
