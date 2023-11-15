@@ -6,13 +6,13 @@
 */
 char **pel_custom_get_environment(CustomInfo_t *format)
 {
-    if (!format->custom_environ || format->new_environ_changed)
+    if (!format->environ || format->new_environ_changed)
     {
-        format->custom_environ = pel_custom_list_to_strings(format->linked_environ);
+        format->environ = pel_custom_list_to_strings(format->linked_environ);
         format->new_environ_changed = 0;
     }
 
-    return format->custom_environ;
+    return format->environ;
 }
 /**
 * pel_custom_unset_environment - Remove an environment variable

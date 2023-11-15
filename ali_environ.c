@@ -80,8 +80,8 @@ int pel_custom_populate_environment_list(CustomInfo_t *format)
 	CustomList_t *node = NULL;
 	size_t i;
 
-	for (i = 0; custom_environ[i]; i++)
-		pel_custom_add_node_end(&node, custom_environ[i], 0);
+	for (i = 0; environ[i]; i++)
+		pel_custom_add_node_end(&node, environ[i], 0);
 	format->linked_environ = node;
 	return (0);
 }

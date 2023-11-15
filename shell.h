@@ -34,7 +34,7 @@
 #define HISTORY_FILE ".custom_shell_history"
 #define HISTORY_MAX 4096
 
-extern char **custom_environ;
+extern char **environ;
 
 /**
 * struct CustomList - the singly linked list.
@@ -83,7 +83,7 @@ char *prg_fname;
 CustomList_t *linked_environ;
 CustomList_t *hist_node;
 CustomList_t *alias;
-char **custom_environ;
+char **environ;
 int new_environ_changed;
 int position;
 char **command_buffer; /* for memory management */
