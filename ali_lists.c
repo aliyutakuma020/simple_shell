@@ -8,7 +8,8 @@
 *
 * Return: returns pointer to the new head of the list
 */
-CustomList_t *pel_custom_add_node(CustomList_t **head, const char *s, int n)
+CustomList_t *pel_custom_add_node(CustomList_t **head,
+		const char *s, int n)
 {
 CustomList_t *new;
 
@@ -43,7 +44,8 @@ return (new);
 *
 * Return: returns size of list
 */
-CustomList_t *pel_custom_add_node_end(CustomList_t **head, const char *s, int n)
+CustomList_t *pel_custom_add_node_end(CustomList_t **head,
+		const char *s, int n)
 {
 CustomList_t *new_node, *node;
 
@@ -80,7 +82,8 @@ return (new_node);
 }
 
 /**
-* pel_custom_print_list_str - the prints only the text element of a CustomList_t linked list
+* pel_custom_print_list_str - the prints only the text element
+* of a CustomList_t linked list
 * @high: the pointer to first node.
 *
 * Return: returns the size of list

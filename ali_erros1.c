@@ -1,9 +1,10 @@
 #include "shell.h"
 /**
-* pel_custom_atoi - it onverts a string to an integer.
-* @t: string to be converted
-* Return: 0 if no numbers in string, converted number otherwise
-*       -1 on error
+* pel_custom_error_atoi - Converts a string to an integer.
+* @t: String to be converted.
+*
+* Return: 0 if no numbers in string, converted number otherwise,
+*         -1 on error.
 */
 int pel_custom_error_atoi(char *t)
 {
@@ -11,7 +12,7 @@ int j = 0;
 unsigned long int result = 0;
 if (*t == '+')
 t++;
-for (j = 0;  t[j] != '\0'; j++)
+for (j = 0; t[j] != '\0'; j++)
 {
 if (t[j] >= '0' && t[j] <= '9')
 {
@@ -26,11 +27,9 @@ return (-1);
 return (result);
 }
 /**
-* pel_custom_print_error - prints an error message.
-* @info: the parameter & return info struct
-* @estr: string containing specified error type
-* Return: 0 if no numbers in string, converted number otherwise
-*        -1 on error
+* pel_custom_print_error - Prints an error message.
+* @format: Parameter & return info struct.
+* @e: String containing specified error type.
 */
 void pel_custom_print_error(CustomInfo_t *format, char *e)
 {
@@ -43,11 +42,11 @@ pel_custom_error_puts(": ");
 pel_custom_error_puts(e);
 }
 /**
-* pel_custom_print_d - it prints a decimal (int) number (base 10)
-* @insert: input
-* @fd: the filedescriptor to be written.
+* pel_custom_print_d - Prints a decimal (int) number (base 10).
+* @insert: Input.
+* @fd: The file descriptor to be written.
 *
-* Return: returns the number of characters printed
+* Return: Returns the number of characters printed.
 */
 int pel_custom_print_d(int insert, int fd)
 {
@@ -79,12 +78,12 @@ count++;
 return (count);
 }
 /**
-* pel_custom_convert_number - converter function, a clone of itoa
-* @m: the number.
-* @base: the base.
-* @flags: the argument flags
+* pel_custom_convert_number - Converter function, a clone of itoa.
+* @m: The number.
+* @base: The base.
+* @flags: The argument flags.
 *
-* Return: returns the string
+* Return: Returns the string.
 */
 char *pel_custom_convert_number(long int m, int base, int flags)
 {
@@ -101,7 +100,7 @@ s = '-';
 a = flags & LOWERCASE_CONVERSION ? "0123456789abcdef" : "0123456789ABCDEF";
 ptr = &buffer[49];
 *ptr = '\0';
-do	{
+do {
 *--ptr = a[n % base];
 n /= base;
 } while (n != 0);
@@ -110,9 +109,8 @@ if (s)
 return (ptr);
 }
 /**
-* pel_custom_remove_comments - the function replace the first instance of 
-* '#' with '\0'.
-* @buf: address of the string to modify
+* pel_custom_remove_comments - Replaces the first instance of '#' with '\0'.
+* @b: Address of the string to modify.
 */
 void pel_custom_remove_comments(char *b)
 {
