@@ -6,13 +6,12 @@
 */
 char **pel_custom_get_environment(CustomInfo_t *format)
 {
-    if (!format->environ || format->new_environ_changed)
-    {
-        format->environ = pel_custom_list_to_strings(format->linked_environ);
-        format->new_environ_changed = 0;
-    }
-
-    return format->environ;
+if (!format->environ || format->new_environ_changed)
+{
+format->environ = pel_custom_list_to_strings(format->linked_environ);
+format->new_environ_changed = 0;
+}
+return (format->environ);
 }
 /**
 * pel_custom_unset_environment - Remove an environment variable
@@ -33,7 +32,7 @@ t = pel_custom_starts_with(node->text, v);
 if (t && *t == '=')
 {
 format->new_environ_changed =
-	pel_custom_delete_node_at_index(&(format->linked_environ), i);
+pel_custom_delete_node_at_index(&(format->linked_environ), i);
 i = 0;
 node = format->linked_environ;
 continue;
