@@ -218,7 +218,6 @@ char **pel_custom_list_to_strings(CustomList_t *);
 size_t pel_custom_print_list(const CustomList_t *);
 CustomList_t *pel_custom_node_starts_with(CustomList_t *, char *, char);
 ssize_t pel_custom_get_node_index(CustomList_t *, CustomList_t *);
-
 /* toem_vars.c */
 int pel_custom_is_command_chain(CustomInfo_t *, char *, size_t *);
 void custom_check_cmd_chain(CustomInfo_t *, char *, size_t *, size_t, size_t);

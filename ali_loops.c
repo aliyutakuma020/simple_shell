@@ -59,11 +59,11 @@ CustomBuiltinTable custom_builtin_tbl[] = {
 {"exit", pel_custom_exit},
 {"env", pel_custom_env},
 {"help", pel_custom_help},
-/*   {"history", pel_custom_history},*/
+{"history", pel_custom_history},
 {"setenv", pel_custom_setenv},
 {"unsetenv", pel_custom_unsetenv},
 {"cd", pel_custom_cd},
-/*  {"alias", pel_custom_alias},*/
+{"alias", pel_custom_alias},
 {NULL, NULL}
 };
 
