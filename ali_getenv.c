@@ -6,7 +6,6 @@
 */
 char **pel_custom_get_environment(CustomInfo_t *format)
 {
-<<<<<<< HEAD
     if (!format->custom_environ || format->new_environ_changed)
     {
         format->custom_environ = pel_custom_list_to_strings(format->linked_environ);
@@ -14,14 +13,6 @@ char **pel_custom_get_environment(CustomInfo_t *format)
     }
 
     return format->custom_environ;
-=======
-if (!format->new_environ || format->new_environ_changed)
-{
-format->new_environ = pel_custom_list_to_strings(format->linked_environ);
-format->new_environ_changed = 0;
-}
-return (format->new_environ);
->>>>>>> bb62fbd07fd73d097db4e4d2f01b8689d42ea10d
 }
 /**
 * pel_custom_unset_environment - Remove an environment variable

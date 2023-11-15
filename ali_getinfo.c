@@ -45,7 +45,6 @@ pel_custom_replace_variables(format);
 */
 void pel_custom_free_info(CustomInfo_t *format, int a)
 {
-<<<<<<< HEAD
     pel_custom_free(format->argv);
     format->argv = NULL;
     format->str_path = NULL;
@@ -66,26 +65,4 @@ void pel_custom_free_info(CustomInfo_t *format, int a)
             close(format->r_fd);
         pel_custom_putchar(BUFFER_FLUSH);
     }
-=======
-pel_custom_free(format->argv);
-format->argv = NULL;
-format->str_path = NULL;
-if (a)
-{
-if (!format->command_buffer)
-free(format->arg);
-if (format->linked_environ)
-pel_custom_free_list(&(format->linked_environ));
-if (format->hist_node)
-pel_custom_free_list(&(format->hist_node));
-if (format->alias)
-pel_custom_free_list(&(format->alias));
-pel_custom_free(format->new_environ);
-format->new_environ = NULL;
-pel_custom_bfree((void **)&(format->command_buffer));
-if (format->r_fd > 2)
-close(format->r_fd);
-pel_custom_putchar(BUFFER_FLUSH);
-}
->>>>>>> bb62fbd07fd73d097db4e4d2f01b8689d42ea10d
 }

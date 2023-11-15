@@ -21,7 +21,6 @@ r = getline(buffer, &len_p, stdin);
 #else
 r = pel_custom_getline(format, buffer, &len_p);
 #endif
-<<<<<<< HEAD
         if (r > 0)
         {
             if ((*buffer)[r - 1] == '\n')
@@ -39,25 +38,6 @@ r = pel_custom_getline(format, buffer, &len_p);
         }
     }
     return (r);
-=======
-if (r > 0)
-{
-if ((*buffer)[r - 1] == '\n')
-{
-(*buffer)[r - 1] = '\0';
-r--;
-}
-format->flagline_c = 1;
-pel_custom_remove_comments(*buffer);
-pel_custom_build_history_list(format, *buffer, format->c_hist++);
-{
-*len = r;
-format->command_buffer = *buffer;
-}
-}
-}
-return (r);
->>>>>>> bb62fbd07fd73d097db4e4d2f01b8689d42ea10d
 }
 /**
 * pel_custom_get_input - it gets a line minus the newline.
