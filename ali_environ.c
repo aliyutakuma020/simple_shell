@@ -1,96 +1,86 @@
 #include "shell.h"
-char **custom_environ;
 /**
- * pel_custom_env - prints the current environment
- * @info: Structure containing potential arguments.
- * Return: Always 0
- */
-int pel_custom_env(CustomInfo_t *format)
+* pel_custom_exit - Exit the custom shell.
+* @format: CustomInfo_t structure.
+*
+* Return: 0 if the command is successful, -1 on error.
+*/
+int pel_custom_exit(CustomInfo_t *format)
 {
-    pel_custom_print_list_str(format->linked_environ);
-    return (0);
+int exitcheck = 0;
+if (format->argv[1])  /* If there is an exit argument */
+{
+exitcheck = pel_custom_atoi(format->argv[1]);
+if (exitcheck == -1)
+{
+format->position = 2;
+pel_custom_print_error(format, "Illegal number: ");
+pel_custom_error_puts(format->argv[1]);
+pel_custom_error_putchar('\n');
+return (1);
 }
-
-/**
- * pel_custom_getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @n: env var name
- *
- * Return: the value
- */
-char *pel_custom_getenv(CustomInfo_t *format, const char *n)
-{
-    CustomList_t *node = format->linked_environ;
-    char *p;
-
-    while (node)
-    {
-        p = pel_custom_starts_with(node->text, n);
-        if (p && *p)
-            return (p);
-        node = node->next;
-    }
-    return (NULL);
+format->fig_err = exitcheck;
+return (-2);
 }
-
-/**
- * pel_custom_setenv - Initialize a new environment variable or modify an existing one
- * @format: Structure containing potential arguments.
- * Return: 0 on success, 1 on error.
- */
-int pel_custom_setenv(CustomInfo_t *format)
-{
-    if (format->argc != 3)
-    {
-        pel_custom_error_puts("Incorrect number of arguments\n");
-        return 1;
-    }
-
-    if (pel_custom_set_environment(format, format->argv[1], format->argv[2]))
-        return (0);
-
-    return (1);
+format->fig_err = -1;
+return (-2);
 }
-
-
 /**
- * pel_custom_unsetenv - Remove an environment variable
- * @format: Structure containing potential arguments.
- * Return: Always 0
- */
-int pel_custom_unsetenv(CustomInfo_t *format)
+* pel_custom_cd - Change the current directory of a process.
+* @format: Structure containing potential arguments.
+*
+* Return: Returns 0.
+*/
+int pel_custom_cd(CustomInfo_t *format)
 {
-    int j;
-
-    if (format->argc == 1)
-    {
-        pel_custom_error_puts("Too few arguments.\n");
-        return 1;
-    }
-    
-    for (j = 1; j <= format->argc; j++)
-    {
-        pel_custom_unset_environment(format, format->argv[j]);
-    }
-
-    return 0;
+char *dir, buffer[1024];
+int chdir_ret;
+char *s = getcwd(buffer, 1024);
+if (!s)
+{
+pel_custom_puts("TODO: >>getcwd failure emsg here<<\n");
 }
-
-/**
- * pel_custom_populate_environment_list - populates env linked list
- * @format: Structure containing potential arguments.
- * Return: Always 0
- */
-int pel_custom_populate_environment_list(CustomInfo_t *format)
+dir = format->argv[1] ? format->argv[1] : pel_custom_getenv(format, "HOME=");
+chdir_ret = chdir(dir ? dir : "/");
+if (pel_custom_strcmp(format->argv[1], "-") == 0)
 {
-    extern char **custom_environ;
-    CustomList_t *node = NULL;
-    size_t i;
-
-    for (i = 0; custom_environ[i]; i++)
-    {
-	    pel_custom_add_node_end(&node, custom_environ[i], 0);
-    }
-    format->linked_environ = node;
-    return 0;
+if (!pel_custom_getenv(format, "OLDPWD="))
+{
+pel_custom_puts(s);
+pel_custom_putchar('\n');
+return (1);
+}
+dir = pel_custom_getenv(format, "OLDPWD=");
+pel_custom_puts(dir);
+pel_custom_putchar('\n');
+chdir_ret = chdir(dir ? dir : "/");
+}
+else
+{
+chdir_ret = chdir(format->argv[1]);
+}
+if (chdir_ret == -1)
+{
+pel_custom_print_error(format, "can't cd to ");
+pel_custom_error_puts(format->argv[1]);
+pel_custom_error_putchar('\n');
+}
+else
+{
+pel_custom_set_environment(format, "OLDPWD",
+pel_custom_getenv(format, "PWD="));
+pel_custom_set_environment(format, "PWD", getcwd(buffer, 1024));
+}
+return (0);
+}
+/**
+* pel_custom_help - Help function.
+* @format: Structure containing potential arguments.
+* Return: Always returns 0.
+*/
+int pel_custom_help(CustomInfo_t *format __attribute__((unused)))
+{
+/*implementation for the help function*/
+pel_custom_puts("Help call works. Function not yet implemented\n");
+return (0);
 }
