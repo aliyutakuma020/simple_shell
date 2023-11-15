@@ -11,7 +11,8 @@ char *buffer, *d;
 d = pel_custom_getenv(format, "HOME=");
 if (!d)
 return (NULL);
-buffer = malloc(sizeof(char) * (pel_custom_strlen(d) + pel_custom_strlen(HISTORY_FILE) + 2));
+buffer = malloc(sizeof(char) * (pel_custom_strlen(d) +
+			pel_custom_strlen(HISTORY_FILE) + 2));
 if (!buffer)
 return (NULL);
 buffer[0] = 0;
@@ -21,7 +22,7 @@ pel_custom_strcat(buffer, HISTORY_FILE);
 return (buffer);
 }
 /**
-* write_history - writes the command history to a file
+* pel_custom_write_history - writes the command history to a file
 * @format: the parameter struct
 *
 * Return: returns 1 on success, else -1
@@ -47,8 +48,8 @@ close(f);
 return (1);
 }
 /**
-* read_history - reads history from file
-* @info: the parameter struct
+* pel_custom read_history - reads history from file
+* @format: the parameter struct
 *
 * Return: histcount on success, 0 otherwise
 */
@@ -93,7 +94,7 @@ pel_custom_renumber_history(format);
 return (format->c_hist);
 }
 /**
-* build_history_list - it adds entry to a history linked list.
+* pel_custom_build_history_list - it adds entry to a history linked list.
 * @format: Structure containing potential arguments. Used to maintain
 * @buffer: the buffer
 * @line: the history linecount, histcount
@@ -111,7 +112,8 @@ format->hist_node = node;
 return (0);
 }
 /**
-* pel_custom_renumber_history - the renumbers the history linked list after changes
+* pel_custom_renumber_history - the renumbers the history
+* linked list after changes
 * @format: Structure containing potential arguments. Used to maintain
 *
 * Return: returns the new histcount

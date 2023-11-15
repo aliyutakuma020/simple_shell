@@ -69,7 +69,8 @@ CustomBuiltinTable custom_builtin_tbl[] = {
 
 for (j = 0; custom_builtin_tbl[j].builtin_type; j++)
 {
-if (pel_custom_strcmp(format->argv[0], custom_builtin_tbl[j].builtin_type) == 0)
+if (pel_custom_strcmp(format->argv[0],
+			custom_builtin_tbl[j].builtin_type) == 0)
 {
 format->count_err++;
 builtin_ret = custom_builtin_tbl[j].builtin_function(format);
@@ -102,7 +103,8 @@ k++;
 if (!k)
 return;
 
-path = find_pel_custom_path(format, pel_custom_getenv(format, "PATH="), format->argv[0]);
+path = find_pel_custom_path(format, pel_custom_getenv(format,
+			"PATH="), format->argv[0]);
 if (path)
 {
 format->str_path = path;
@@ -111,7 +113,8 @@ fork_pel_custom_command(format);
 else
 {
 if ((pel_custom_interactive(format) || pel_custom_getenv(format, "PATH=")
-|| format->argv[0][0] == '/') && is_pel_custom_command(format, format->argv[0]))
+|| format->argv[0][0] == '/') && is_pel_custom_command(format,
+	format->argv[0]))
 fork_pel_custom_command(format);
 else if (*(format->arg) != '\n')
 {
@@ -123,7 +126,7 @@ pel_custom_print_error(format, "not found\n");
 
 
 /**
-* pel_custom_fork_cmd - forks an exec thread to run cmd
+* fork_pel_custom_command - forks an exec thread to run cmd
 * @format: the parameter & return info struct
 *
 * Return: void
@@ -140,7 +143,8 @@ return;
 }
 if (child_pid == 0)
 {
-if (execve(format->str_path, format->argv, pel_custom_get_environment(format)) == -1)
+if (execve(format->str_path, format->argv,
+			pel_custom_get_environment(format)) == -1)
 {
 pel_custom_free_info(format, 1);
 if (errno == EACCES)
