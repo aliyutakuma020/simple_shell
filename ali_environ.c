@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _myenv - displays the current situation
+ * pel_custom_env - displays the current situation
  * @format:Argument structure that could be used.
  * Return: Always 0
  */
